@@ -59,7 +59,7 @@ class Employees extends State<MyApp> {
                         maxWidth: 400.0,
                         minHeight: 50.0,
                       ),
-                      alignment: Alignment.bottomRight,
+                      alignment: Alignment.center,
                       child: const Text(
                         "Select CSV",
                         style: TextStyle(
