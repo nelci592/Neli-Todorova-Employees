@@ -39,34 +39,33 @@ class Employees extends State<MyApp> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
               child: Container(
-                height: 40.0,
                 width: 200,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.0),
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color.fromRGBO(111, 198, 25, 1),
+                      Color.fromRGBO(159, 235, 83, 1)
+                    ],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+                ),
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    onSurface: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                  ),
                   onPressed: _openFileExplorer,
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color.fromRGBO(111, 198, 25, 1),
-                            Color.fromRGBO(159, 235, 83, 1)
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: Container(
-                      constraints: const BoxConstraints(
-                        maxWidth: 400.0,
-                        minHeight: 50.0,
+                  child: const Center(
+                    child: Text(
+                      "Select CSV",
+                      style: TextStyle(
+                        fontSize: 16,
                       ),
-                      alignment: Alignment.center,
-                      child: const Text(
-                        "Select CSV",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -176,7 +175,7 @@ class Employees extends State<MyApp> {
       }
     }
 
-    var result = sortPairs(employeeIds.toList());
+    var result = filterPairsBySum(employeeIds.toList());
 
     setState(() {
       pairs = result;
@@ -193,7 +192,7 @@ class Employees extends State<MyApp> {
     return date;
   }
 
-  List<Pair> sortPairs(List<dynamic> employeeIds) {
+  List<Pair> filterPairsBySum(List<dynamic> employeeIds) {
     List<Pair> filteredById = <Pair>[];
     List<Pair> results = <Pair>[];
     int maxSum = 0;
